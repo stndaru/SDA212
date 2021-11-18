@@ -1,0 +1,257 @@
+/*
+        DATA STRUCTURE:
+
+            KUIL REFERENCES PULAU
+            DATARAN REFERENCES KUIL
+            DATARAN DOESN'T ACTUALLY CONNECT BETWEEN KUIL
+            WHEN TRAVERSE TO DIFFERENT KUIL, CHECK KUIL AND TRAVERSE KUIL DLL
+
+            Kuil stored in HashMap Kuil {Kuil :  PulauName}
+            Pulau also stored in HashMap Pulau {Pulau : PulauObj} 
+
+            Dataran are LinkedList
+            LinkedList for ordering based off order from prev to next
+            
+            Pulau Object:
+                String Nama
+                String kuilNameFirst - The first Kuil of the Island
+                HashMap {KuilName : KuilObject}
+                Kuil head
+                Kuil tail
+                int totalKuil
+
+            Kuil Object:
+                String nama;
+                AVL Tree[Dataran] sorted based on Height
+                Dataran head
+                Dataran tail
+                Kuil prev
+                Kuil next
+                int totalDataran
+
+            Dataran Object:
+                CustomInteger height REFERENCE AVLTreeNode.height
+                Dataran Left
+                Dataran next
+                boolean isKuil
+                String kuilName
+
+            AVLTree:
+                Stores Object Dataran using seperate LinkedList
+                Stores CustomInteger heightValue
+                Tree sorted by Dataran Height
+
+            RAIDEN SHOGUN:
+            Class pointer yang memiliki atribut 
+                -Kuil saat ini  
+                -Dataran saat ini (tinggi dan dataran keberapa)
+
+
+        UNIFIKASI U V - Combine V to U - Plays with Kuil
+            CORE: Get head of Pulau V, attach head to tail of U, update U tail, add all Kuil to Hashmap, delete V
+
+            Get Pulau U and Pulau V
+            U.tail.next = V.head
+            V.head.prev = U.tail
+            U.tail = V.tail
+            for i : keySet in V.kuilMap
+                U.kuilMap.put(i, V.kuilMap.get(i))
+            Pulau.remove(V)
+
+        PISAH U - Remove U from V - Plays with Kuil
+            CORE: Get Pulau where U reside, get kuil U, create new Pulau U, assign kuil U as U.head, assign P.tail as U.tail
+
+            Get Pulau V from HashMap Kuil
+            new Pulau(U)
+            pulauMap.put(U : Uobj)
+            U.head = V.kuilMap.get(U)
+            U.tail = V.tail
+            V.tail = kuilU.next
+            V.tail.next = null
+            U.head.prev = null
+            tempKuil = U.head
+            while tempKuil != null
+                U.kuilMap.put(tempKuil.nama : tempKuil)
+                V.kuilMap.remove(tempKuil.nama)
+                tempKuil.next
+
+        GERAK - Traverse Dataran, Kuil
+            CORE: Get Raiden's location, dataran = dataran.next/prev. if Null traverse Kuil DLL, if exist next/prev Kuil, update Kuil and go to head/tail Dataran. 
+                    Get dataran height.
+
+        TEBAS - Traverse Dataran, Kuil
+            CORE: get Kuil info, get Dataran height, traverse AVLTree, go inside and traverse until found Dataran = Dataran (compare object)
+                    go prev/next depends and using counter, if prev/next is null, 
+                    go to Kuil.next/prev depends, traverse AVLTree, if not exist height, continue traverse Kuil 
+                    and repeat but start from tail/head
+
+        TELEPORTASI - Traverse Dataran, Kuil, Pulau
+            CORE: Just get the Kuil info and assign RS.Dataran to the Kuil's Dataran (the Head)
+
+        RISE U H X
+            CORE: Iterate Kuil, Iterate AVLTree, update heightValue (Dataran.height would get updated because pass by-reference)
+                
+
+        QUAKE U H X - Possibly O(nm) n for iterating Dataran, m for iterating AVLTree
+            NOTE: Check for case if height intersect with other Node (QUAKE until minimum default value of 1), if yes will have to combine list
+            Combining can use a ton of time, traverse AVL tree, find all Node with final height of 1, delete
+            From kuilStart, iterate from beginning to create new Node valued 1 and update the Dataran's height (to preserve Order)
+            
+            CORE:
+
+        CRUMBLE
+            CORE: Get Kuil and Dataran info, check if dataran Kuil or not, if not, Store DataranObj, GERAK L
+                    Check if Dataran tail or not, if Yes, update Kuil.tail and nextKuil.head
+                    Update Dataran DLL
+                    Go to AVLTree, find Dataran, delete and update Node DLL, check if DLL empty or not, if empty delete Node
+
+        STABILIZE 
+            CORE: Get Kuil and Dataran info, check if dataran Kuil or not, if not, check prev is higher or not
+                    if not, create new Dataran, update Dataran DLL and insert to AVLTree
+
+        SWEEPING
+            CORE: Get Pulau, Traverse Kuil, for every Kuil traverse AVL Tree with 
+            Receive input Long (limit is 10^12)
+    
+    */
+
+
+public class AVLTree {
+
+    public class Node {
+        int key;
+        int height;
+        Node prev;
+        Node next;
+
+        Node(int key) {
+            this.key = key;
+        }
+    }
+
+    private Node root;
+
+    public Node find(int key) {
+        Node current = root;
+        while (current != null) {
+            if (current.key == key) {
+               break;
+            }
+            current = current.key < key ? current.next : current.prev;
+        }
+        return current;
+    }
+
+    public void insert(int key) {
+        root = insert(root, key);
+    }
+
+    public void delete(int key) {
+        root = delete(root, key);
+    }
+
+    public Node getRoot() {
+        return root;
+    }
+
+    public int height() {
+        return root == null ? -1 : root.height;
+    }
+
+    private Node insert(Node node, int key) {
+        if (node == null) {
+            return new Node(key);
+        } else if (node.key > key) {
+            node.prev = insert(node.prev, key);
+        } else if (node.key < key) {
+            node.next = insert(node.next, key);
+        } else {
+            throw new RuntimeException("duplicate Key!");
+        }
+        return rebalance(node);
+    }
+
+    private Node delete(Node node, int key) {
+        if (node == null) {
+            return node;
+        } else if (node.key > key) {
+            node.prev = delete(node.prev, key);
+        } else if (node.key < key) {
+            node.next = delete(node.next, key);
+        } else {
+            if (node.prev == null || node.next == null) {
+                node = (node.prev == null) ? node.next : node.prev;
+            } else {
+                Node mostLeftChild = mostLeftChild(node.next);
+                node.key = mostLeftChild.key;
+                node.next = delete(node.next, node.key);
+            }
+        }
+        if (node != null) {
+            node = rebalance(node);
+        }
+        return node;
+    }
+
+    private Node mostLeftChild(Node node) {
+        Node current = node;
+        /* loop down to find the leftmost leaf */
+        while (current.prev != null) {
+            current = current.prev;
+        }
+        return current;
+    }
+
+    private Node rebalance(Node z) {
+        updateHeight(z);
+        int balance = getBalance(z);
+        if (balance > 1) {
+            if (height(z.next.next) > height(z.next.prev)) {
+                z = rotateLeft(z);
+            } else {
+                z.next = rotateRight(z.next);
+                z = rotateLeft(z);
+            }
+        } else if (balance < -1) {
+            if (height(z.prev.prev) > height(z.prev.next)) {
+                z = rotateRight(z);
+            } else {
+                z.prev = rotateLeft(z.prev);
+                z = rotateRight(z);
+            }
+        }
+        return z;
+    }
+
+    private Node rotateRight(Node y) {
+        Node x = y.prev;
+        Node z = x.next;
+        x.next = y;
+        y.prev = z;
+        updateHeight(y);
+        updateHeight(x);
+        return x;
+    }
+
+    private Node rotateLeft(Node y) {
+        Node x = y.next;
+        Node z = x.prev;
+        x.prev = y;
+        y.next = z;
+        updateHeight(y);
+        updateHeight(x);
+        return x;
+    }
+
+    private void updateHeight(Node n) {
+        n.height = 1 + Math.max(height(n.prev), height(n.next));
+    }
+
+    private int height(Node n) {
+        return n == null ? -1 : n.height;
+    }
+
+    public int getBalance(Node n) {
+        return (n == null) ? 0 : height(n.next) - height(n.prev);
+    }
+}

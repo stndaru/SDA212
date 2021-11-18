@@ -1,0 +1,73 @@
+Lab4 Comprehensive Guide
+Might lead to plagiarism claim so you better have some plan for this
+
+Assuming you have node class which contains
+- Previous element
+- Current value
+- Next element
+
+Class gedung
+it has node pointers for
+- head
+- tail
+- agent
+
+BANGUN
+// base case, creating the first floor
+create new Node for head with previous and next element as null
+set agent and tail to head
+
+// second case, create second floor
+create new Node for next element of head, with previous attribute pointing to head and next element as null
+then assign tail and agent to it
+
+// third case, agent is on the highest floor
+create new Node for the next element of agent, with previous attribute pointing to agent and next element as null
+then assign tail and agent to it
+
+// last case, agent is on the middle
+store the next element of agent, then you have 2 option, choose which you want to choose
+OPT1: create new Node for previous of next element of agent with prev pointing to agent and next to the stored next element of agent
+OPT2: create new Node for next element of agent with prev pointing to agent and next to the stored next element of agent
+then assign agent to it
+
+LIFT
+//case one
+going up, check if next element is null, if not go up
+// case two
+going down, check if prev element is null, if not go down
+
+print current floor
+
+HANCURKAN
+print current floor
+
+// if only one floor
+set everything to null
+
+// if destroying the highest floor
+move agent to previous, set the next element to null, then assign tail to agent
+
+// if destroying the lowest floor
+move agent to next, set previous element to null, then assign head to agent
+
+// if destroying middle floor
+you have 2 option, choose one
+OPT1: store previous element, and then move agent to the next element, set the agent prev to the stored, and set the stored next to agent
+OPT2: store next element, and then move agent to the prev element, set the agent next to the stored, and set the stored prev to the agent
+
+TIMPA
+// case if input is not empty (atleast one floor)
+set the next of current tail to the input head, and set input head previous to current tail
+point the current tail to the input tail
+
+SKETSA
+start from head, keep appending the value and iterate
+
+
+EXTRA HANDY TIPS
+DONT USE STRING CONCAT (ex: string += "added")
+see: 
+https://stackoverflow.com/questions/15400508/string-concatenation-complexity-in-c-and-java#:~:text=String%20concatenation%20complexity%20in%20C%2B%2B%20and%20Java%20%5Bduplicate%5D&text=On%20each%20concatenation%20a%20new,would%20be%20O(n)%20.
+https://stackoverflow.com/questions/513600/should-i-use-javas-string-format-if-performance-is-important
+USE OTHER METHODS SUCH AS PRINTING IN THE FUNCTION OR USE STRINGBUILDER

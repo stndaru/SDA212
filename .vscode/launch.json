@@ -1,0 +1,371 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch MinHeap",
+            "request": "launch",
+            "mainClass": "MinHeap",
+            "projectName": "Lab_d891a50f"
+        },
+        {
+            "type": "java",
+            "name": "Launch Lab6v1",
+            "request": "launch",
+            "mainClass": "Lab6v1",
+            "projectName": "Lab_d891a50f"
+        },
+        {
+            "type": "java",
+            "name": "Launch Lab6",
+            "request": "launch",
+            "mainClass": "Lab6",
+            "projectName": "Lab_d891a50f"
+        },
+        {
+            "type": "java",
+            "name": "Launch AVLTreeTestLab6",
+            "request": "launch",
+            "mainClass": "AVLTreeTestLab6",
+            "projectName": "Lab_d891a50f"
+        },
+        {
+            "type": "java",
+            "name": "Launch Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Launch Codeforces1251A",
+            "request": "launch",
+            "mainClass": "CF.Codeforces1251A",
+            "projectName": "Lab_d891a50f"
+        },
+        {
+            "type": "java",
+            "name": "Launch Codeforces381A",
+            "request": "launch",
+            "mainClass": "CF.Codeforces381A",
+            "projectName": "Lab_d891a50f"
+        },
+        {
+            "type": "java",
+            "name": "Launch Codeforces903A",
+            "request": "launch",
+            "mainClass": "CF.Codeforces903A",
+            "projectName": "Lab_d891a50f"
+        },
+        {
+            "type": "java",
+            "name": "Launch Lab0",
+            "request": "launch",
+            "mainClass": "Lab0.Lab0",
+            "projectName": "Lab_d891a50f"
+        },
+        {
+            "type": "java",
+            "name": "Launch Lab0V2",
+            "request": "launch",
+            "mainClass": "Lab0.Lab0V2",
+            "projectName": "Lab_d891a50f"
+        },
+        {
+            "type": "java",
+            "name": "Launch Lab1",
+            "request": "launch",
+            "mainClass": "Lab1.Lab1",
+            "projectName": "Lab_d891a50f"
+        },
+        {
+            "type": "java",
+            "name": "Launch Lab2",
+            "request": "launch",
+            "mainClass": "Lab2.Lab2",
+            "projectName": "Lab_d891a50f"
+        },
+        {
+            "type": "java",
+            "name": "Launch Lab3",
+            "request": "launch",
+            "mainClass": "Lab3.Lab3",
+            "projectName": "Lab_d891a50f"
+        },
+        {
+            "type": "java",
+            "name": "Launch Lab3RecFailed",
+            "request": "launch",
+            "mainClass": "Lab3.Lab3RecFailed",
+            "projectName": "Lab_d891a50f"
+        },
+        {
+            "type": "java",
+            "name": "Launch Lab3copy",
+            "request": "launch",
+            "mainClass": "Lab3.Lab3copy",
+            "projectName": "Lab_d891a50f"
+        },
+        {
+            "type": "java",
+            "name": "Launch Lab3greedy",
+            "request": "launch",
+            "mainClass": "Lab3.Lab3greedy",
+            "projectName": "Lab_d891a50f"
+        },
+        {
+            "type": "java",
+            "name": "Launch Lab3scrapped",
+            "request": "launch",
+            "mainClass": "Lab3.Lab3scrapped",
+            "projectName": "Lab_d891a50f"
+        },
+        {
+            "type": "java",
+            "name": "Launch Lab4",
+            "request": "launch",
+            "mainClass": "Lab4.Lab4",
+            "projectName": "Lab_d891a50f"
+        },
+        {
+            "type": "java",
+            "name": "Launch AVLTreeProto",
+            "request": "launch",
+            "mainClass": "Lab5.LabPrototype.AVLTreeProto",
+            "projectName": "Lab_d891a50f"
+        },
+        {
+            "type": "java",
+            "name": "Launch AVLTreeTesting",
+            "request": "launch",
+            "mainClass": "Lab5.LabTesting.AVLTreeTesting",
+            "projectName": "Lab_d891a50f"
+        },
+        {
+            "type": "java",
+            "name": "Launch AVLTreeTest",
+            "request": "launch",
+            "mainClass": "Lab5.TreeTest1.AVLTreeTest",
+            "projectName": "Lab_d891a50f"
+        },
+        {
+            "type": "java",
+            "name": "Launch AVLTreeTest2",
+            "request": "launch",
+            "mainClass": "Lab5.TreeTest2.AVLTreeTest2",
+            "projectName": "Lab_d891a50f"
+        },
+        {
+            "type": "java",
+            "name": "Launch lab5",
+            "request": "launch",
+            "mainClass": "Lab5.lab5",
+            "projectName": "Lab_d891a50f"
+        },
+        {
+            "type": "java",
+            "name": "Launch lab5copy",
+            "request": "launch",
+            "mainClass": "Lab5.lab5copy",
+            "projectName": "Lab_d891a50f"
+        },
+        {
+            "type": "java",
+            "name": "Launch lab5copy2",
+            "request": "launch",
+            "mainClass": "Lab5.lab5copy2",
+            "projectName": "Lab_d891a50f"
+        },
+        {
+            "type": "java",
+            "name": "Launch lab5copy3",
+            "request": "launch",
+            "mainClass": "Lab5.lab5copy3",
+            "projectName": "Lab_d891a50f"
+        },
+        {
+            "type": "java",
+            "name": "Launch lab5copy4",
+            "request": "launch",
+            "mainClass": "Lab5.lab5copy4",
+            "projectName": "Lab_d891a50f"
+        },
+        {
+            "type": "java",
+            "name": "Launch lab5copy5",
+            "request": "launch",
+            "mainClass": "Lab5.lab5copy5",
+            "projectName": "Lab_d891a50f"
+        },
+        {
+            "type": "java",
+            "name": "Launch lab5copy6",
+            "request": "launch",
+            "mainClass": "Lab5.lab5copy6",
+            "projectName": "Lab_d891a50f"
+        },
+        {
+            "type": "java",
+            "name": "Launch lab5copy7",
+            "request": "launch",
+            "mainClass": "Lab5.lab5copy7",
+            "projectName": "Lab_d891a50f"
+        },
+        {
+            "type": "java",
+            "name": "Launch Kafe",
+            "request": "launch",
+            "mainClass": "Latihan.Latihan14Sep.Kafe",
+            "projectName": "Lab_d891a50f"
+        },
+        {
+            "type": "java",
+            "name": "Launch Latihan23Sep",
+            "request": "launch",
+            "mainClass": "Latihan.Latihan23Sep",
+            "projectName": "Lab_d891a50f"
+        },
+        {
+            "type": "java",
+            "name": "Launch LinkedListTest",
+            "request": "launch",
+            "mainClass": "Latihan.LinkedListTest",
+            "projectName": "Lab_d891a50f"
+        },
+        {
+            "type": "java",
+            "name": "Launch TP1",
+            "request": "launch",
+            "mainClass": "TP1.TP1",
+            "projectName": "Lab_d891a50f"
+        },
+        {
+            "type": "java",
+            "name": "Launch TP188",
+            "request": "launch",
+            "mainClass": "TP1.TP188",
+            "projectName": "Lab_d891a50f"
+        },
+        {
+            "type": "java",
+            "name": "Launch TP1deque1",
+            "request": "launch",
+            "mainClass": "TP1.TP1deque1",
+            "projectName": "Lab_d891a50f"
+        },
+        {
+            "type": "java",
+            "name": "Launch TP1earlybuild",
+            "request": "launch",
+            "mainClass": "TP1.TP1earlybuild",
+            "projectName": "Lab_d891a50f"
+        },
+        {
+            "type": "java",
+            "name": "Launch TP1linkedlist",
+            "request": "launch",
+            "mainClass": "TP1.TP1linkedlist",
+            "projectName": "Lab_d891a50f"
+        },
+        {
+            "type": "java",
+            "name": "Launch TP1linkedlistiterator",
+            "request": "launch",
+            "mainClass": "TP1.TP1linkedlistiterator",
+            "projectName": "Lab_d891a50f"
+        },
+        {
+            "type": "java",
+            "name": "Launch TP1save230628",
+            "request": "launch",
+            "mainClass": "TP1.TP1save230628",
+            "projectName": "Lab_d891a50f"
+        },
+        {
+            "type": "java",
+            "name": "Launch TP2",
+            "request": "launch",
+            "mainClass": "TP2",
+            "projectName": "Lab_d891a50f"
+        },
+        {
+            "type": "java",
+            "name": "Launch Test",
+            "request": "launch",
+            "mainClass": "Test",
+            "projectName": "Lab_d891a50f"
+        },
+        {
+            "type": "java",
+            "name": "Launch Test2",
+            "request": "launch",
+            "mainClass": "Test2",
+            "projectName": "Lab_d891a50f"
+        },
+        {
+            "type": "java",
+            "name": "Launch Test3",
+            "request": "launch",
+            "mainClass": "Test3",
+            "projectName": "Lab_d891a50f"
+        },
+        {
+            "type": "java",
+            "name": "Launch Test4",
+            "request": "launch",
+            "mainClass": "Test4",
+            "projectName": "Lab_d891a50f"
+        },
+        {
+            "type": "java",
+            "name": "Launch Test5",
+            "request": "launch",
+            "mainClass": "Test5",
+            "projectName": "Lab_d891a50f"
+        },
+        {
+            "type": "java",
+            "name": "Launch Soal01",
+            "request": "launch",
+            "mainClass": "UTS.Soal01",
+            "projectName": "Lab_d891a50f"
+        },
+        {
+            "type": "java",
+            "name": "Launch Soal2",
+            "request": "launch",
+            "mainClass": "UTS.Soal2",
+            "projectName": "Lab_d891a50f"
+        },
+        {
+            "type": "java",
+            "name": "Launch Something",
+            "request": "launch",
+            "mainClass": "UTS.Something",
+            "projectName": "Lab_d891a50f"
+        },
+        {
+            "type": "java",
+            "name": "Launch Test(1)",
+            "request": "launch",
+            "mainClass": "UTS.Test",
+            "projectName": "Lab_d891a50f"
+        },
+        {
+            "type": "java",
+            "name": "Launch Test2(1)",
+            "request": "launch",
+            "mainClass": "UTS.Test2",
+            "projectName": "Lab_d891a50f"
+        },
+        {
+            "type": "java",
+            "name": "Launch lab5fix",
+            "request": "launch",
+            "mainClass": "lab5fix",
+            "projectName": "Lab_d891a50f"
+        }
+    ]
+}
