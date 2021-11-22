@@ -6,6 +6,27 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch Lab7v1",
+            "request": "launch",
+            "mainClass": "Lab7v1",
+            "projectName": "Lab_d891a50f"
+        },
+        {
+            "type": "java",
+            "name": "Launch Lab7",
+            "request": "launch",
+            "mainClass": "Lab7",
+            "projectName": "Lab_d891a50f"
+        },
+        {
+            "type": "java",
+            "name": "Launch Lab7test",
+            "request": "launch",
+            "mainClass": "Lab7test",
+            "projectName": "Lab_d891a50f"
+        },
+        {
+            "type": "java",
             "name": "Launch MinHeap",
             "request": "launch",
             "mainClass": "MinHeap",
