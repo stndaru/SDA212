@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch Lab7bonus",
+            "request": "launch",
+            "mainClass": "Lab7bonus",
+            "projectName": "Lab_d891a50f"
+        },
+        {
+            "type": "java",
             "name": "Launch Lab7v1",
             "request": "launch",
             "mainClass": "Lab7v1",

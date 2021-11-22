@@ -7,7 +7,7 @@ import java.io.PrintWriter;
 import java.util.*;
 
 
-public class Lab7 {
+public class Lab7bonus {
     private static InputReader in;
     private static PrintWriter out;
     static int[][] graph;
@@ -65,7 +65,7 @@ public class Lab7 {
             out.println(canMudik(X, Y, K));
         }
 
-        sanityCheck(resultArray);
+        // sanityCheck(resultArray);
 
         out.flush();
     }
@@ -159,12 +159,14 @@ public class Lab7 {
                 {
                     // Pick all vertices as destination for the
                     // above picked source
-                    for (j = 0; j < amount; j++)
+                    for (j = amount-1; j > i-1; j--)
                     {
                         // If vertex k is on the shortest path from
                         // i to j, then update the value of dist[i][j]
-                        if (dist[i][k] + dist[k][j] < dist[i][j])
+                        if (dist[i][k] + dist[k][j] < dist[i][j]){
                             dist[i][j] = dist[i][k] + dist[k][j];
+                            dist[j][i] = dist[i][j];
+                        }
                     }
                 }
             }
