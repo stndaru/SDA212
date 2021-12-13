@@ -26,21 +26,6 @@ public class MinHeap{
         minHeap.printArr();
     }
 
-    static class Dataran{
-        int height;
-        int order;
-        public Dataran(int height){
-            this.height = height;
-        }
-    }
-
-    static class HeapNode {
-        int height;
-        public HeapNode(int height){
-            this.height = height;
-        }
-    }
-
     static class MinHeapArr {
     
         // Member variables of this class

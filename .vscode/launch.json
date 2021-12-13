@@ -6,6 +6,34 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch UAS",
+            "request": "launch",
+            "mainClass": "UAS",
+            "projectName": "Lab_d891a50f"
+        },
+        {
+            "type": "java",
+            "name": "Launch MinHeap",
+            "request": "launch",
+            "mainClass": "Lab6.MinHeap",
+            "projectName": "Lab_d891a50f"
+        },
+        {
+            "type": "java",
+            "name": "Launch TP3",
+            "request": "launch",
+            "mainClass": "TP3",
+            "projectName": "Lab_d891a50f"
+        },
+        {
+            "type": "java",
+            "name": "Launch TP3TestBench",
+            "request": "launch",
+            "mainClass": "TP3TestBench",
+            "projectName": "Lab_d891a50f"
+        },
+        {
+            "type": "java",
             "name": "Launch Lab7bonus",
             "request": "launch",
             "mainClass": "Lab7bonus",

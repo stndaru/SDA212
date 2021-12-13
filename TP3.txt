@@ -1,0 +1,222 @@
+/*
+
+    DATA STRUCTURE
+    Set as undirected Graph
+    For group of Karyawan, set an underlying graph
+    Connecting all of them with Rank in mind (so each with same rank has another edge)
+
+    Karyawan {
+        AdjacencyList Karyawan;
+        AdjacencyList KaryawanWithSameRank
+        int pangkat;
+    }
+
+    TAMBAH U V
+    Add through adjacency list
+    Find U, set adjacency with V
+
+    RESIGN U
+    Delete through adjacency list and delete from Array
+
+    CARRY U
+    Get highest value from adjacency list
+    -
+    Double min heap, one to keep track of actual value available, one as buffer
+    If resign, add to buffer their value
+    While buffer and top of actual value is the same, kick
+    Actually minheap takes too much space so this idea is scrapped :/
+
+    BOSS U
+    BFS from U and find the highest value
+
+    SEBAR U V
+    Add two BFS, one for people with same rank and one for actual friends
+
+    SIMULASI - 19 points
+    How do you do this efficiently withouy BFS everytime you remove someone?
+
+    NETWORKING - 10 points
+    BFS biasa, ngemark bdk kelompok network
+    Tiap kelompok refer ke satu Custom Integer, yaitu diff
+    Pas udah established, baru O(n^2) loop tiap elemen 
+    Bandingin network, kalo beda, cek selisih antara elemen A dan B kira2 berapa
+    Total2 kalo diitung bisa O(n^2)
+    - 
+    Edge case ini bisa result in disconnected groups, misal A B C D, connected cuma A-B ama C-D
+    Solvenya bisa antar network group, misal group A ke B, dibuat path
+    Dengan weighted value selisih paling kecil
+    -
+    Itung2 total masih tetep O(n^2) tapi jadi 3O(n^2)
+    ACTUALLY NEVERMIND TLE LMAO
+
+    Struktur data bawaan java yang diperbolehkan pada TP ini hanya 
+    primitive array, ArrayList, Stack, Queue, Vector, LinkedList, dan ArrayDeque. 
+    
+    Penggunaan struktur data bawaan lain, seperti
+    HashMap, HashSet, TreeMap dilarang dan akan mendapatkan penalti 20%.
+
+    Anda bebas untuk memakai seluruh algoritma graf yang sudah atau akan dipelajari di SDA, seperti
+    Dijkstra, Kruskal (dan struktur data union-find), Prim dan DFS/BFS. 
+
+
+    Keep count ada berapa yang lebih gede dari dia
+    If > 0, then isRentan
+
+    Kalo resign, cek tiap apus
+    Kalo lebih gede, min counternya
+    Cek lagi, kalo 0 berarti ga rentan
+    */
+
+        // if(s != karyawanList[u])
+        //     result = (s.pangkat > result) ? s.pangkat : result;
+
+        // if(karyawanList[u].boss == null && karyawanList[v].boss == null){
+        //     int highest = (karyawanList[u].pangkat > karyawanList[v].pangkat) ? karyawanList[u].pangkat : karyawanList[v].pangkat;
+        //     karyawanList[u].boss = new CustomInteger(highest);
+        //     karyawanList[v].boss = karyawanList[u].boss;
+        // }
+
+        // else if(karyawanList[u].boss == null){
+        //     karyawanList[u].boss = karyawanList[v].boss;
+        //     karyawanList[u].boss.value = (karyawanList[u].boss.value > karyawanList[u].pangkat) ? karyawanList[u].boss.value : karyawanList[u].pangkat;
+        // }
+
+        // else if(karyawanList[v].boss == null){
+        //     karyawanList[v].boss = karyawanList[u].boss;
+        //     karyawanList[v].boss.value = (karyawanList[v].boss.value > karyawanList[v].pangkat) ? karyawanList[v].boss.value : karyawanList[v].pangkat;
+        // }
+
+        // else{
+        //     int highest = (karyawanList[u].boss.value > karyawanList[v].boss.value) ? karyawanList[u].boss.value : karyawanList[v].boss.value;
+        //     karyawanList[u].boss.value = highest;
+        //     karyawanList[v].boss.value = highest;
+        // }
+
+6 5 1
+2 1 1 1 2 1
+1 2
+2 3
+3 4
+4 5
+5 6
+5 1 6
+--
+
+4 2 1
+4 4 4 3
+
+3 4
+2 4
+
+5 4 2
+
+--
+5 4 5
+3 4 1 5 2
+4 1
+3 1
+5 2
+2 4
+6
+1 3 5
+3 3
+2 4
+6
+
+
+5 1 2
+1 1 1 1 2
+
+4 5
+
+5 3 5
+2 3
+
+
+
+3 2 6
+1 2 3
+1 2
+2 3
+3 1
+2 2
+3 1
+1 1 3
+3 1
+5 1 3
+
+4 1
+
+10 18 9
+6 1 10 9 3 9 9 6 7 9
+
+9 5
+3 4
+8 6
+9 4
+8 4
+9 7
+1 4
+9 3
+10 6
+10 3
+4 6
+8 7
+8 3
+2 6
+1 2
+8 9
+2 10
+1 6
+
+4 4
+4 7
+4 1
+4 3
+4 7
+4 6
+4 1
+4 10
+4 3
+
+
+
+5 2 8
+3 1 2 4 5
+
+1 4
+1 2
+
+5 4 3
+5 3 1
+5 5 5
+5 3 3
+5 2 2
+5 4 2
+5 3 3
+5 1 2
+
+
+8 1 3
+8 8 2 8 6 4 3 2
+
+2 6
+
+4 5
+4 1
+4 2
+
+
+12 10 1
+3 8 6 1 10 7 9 5 2 9 8 4
+1 2
+1 4
+1 3
+3 4
+5 6
+7 8
+8 9
+10 11
+11 12
+10 12
+7

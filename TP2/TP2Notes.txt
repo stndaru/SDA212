@@ -1,0 +1,279 @@
+/*
+        DATA STRUCTURE:
+
+            KUIL REFERENCES PULAU
+            DATARAN REFERENCES KUIL
+            DATARAN DOESN'T ACTUALLY CONNECT BETWEEN KUIL
+            WHEN TRAVERSE TO DIFFERENT KUIL, CHECK KUIL AND TRAVERSE KUIL DLL
+
+            Kuil stored in HashMap Kuil {Kuil :  PulauName}
+            Pulau also stored in HashMap Pulau {Pulau : PulauObj} 
+
+            Dataran are LinkedList
+            LinkedList for ordering based off order from prev to next
+            
+            Pulau Object:
+                String Nama
+                String kuilNameFirst - The first Kuil of the Island
+                HashMap {KuilName : KuilObject}
+                Kuil head
+                Kuil tail
+                int totalKuil
+
+            Kuil Object:
+                String nama;
+                AVL Tree[Dataran] sorted based on Height
+                Dataran head
+                Dataran tail
+                Kuil prev
+                Kuil next
+                int totalDataran
+
+            Dataran Object:
+                CustomInteger height REFERENCE AVLTreeNode.height
+                Dataran Left
+                Dataran next
+                boolean isKuil
+                String kuilName
+
+            AVLTree:
+                Stores Object Dataran using seperate LinkedList
+                Stores CustomInteger heightValue
+                Tree sorted by Dataran Height
+
+            RAIDEN SHOGUN:
+            Class pointer yang memiliki atribut 
+                -Kuil saat ini  
+                -Dataran saat ini (tinggi dan dataran keberapa)
+
+
+        UNIFIKASI U V - Combine V to U - Plays with Kuil
+            CORE: Get head of Pulau V, attach head to tail of U, update U tail, add all Kuil to Hashmap, delete V
+
+            Get Pulau U and Pulau V
+            U.tail.next = V.head
+            V.head.prev = U.tail
+            U.tail = V.tail
+            for i : keySet in V.kuilMap
+                U.kuilMap.put(i, V.kuilMap.get(i))
+            Pulau.remove(V)
+
+        PISAH U - Remove U from V - Plays with Kuil
+            CORE: Get Pulau where U reside, get kuil U, create new Pulau U, assign kuil U as U.head, assign P.tail as U.tail
+
+            Get Pulau V from HashMap Kuil
+            new Pulau(U)
+            pulauMap.put(U : Uobj)
+            U.head = V.kuilMap.get(U)
+            U.tail = V.tail
+            V.tail = kuilU.next
+            V.tail.next = null
+            U.head.prev = null
+            tempKuil = U.head
+            while tempKuil != null
+                U.kuilMap.put(tempKuil.nama : tempKuil)
+                V.kuilMap.remove(tempKuil.nama)
+                tempKuil.next
+
+        GERAK - Traverse Dataran, Kuil
+            CORE: Get Raiden's location, dataran = dataran.next/prev. if Null traverse Kuil DLL, if exist next/prev Kuil, update Kuil and go to head/tail Dataran. 
+                    Get dataran height.
+
+        TEBAS - Traverse Dataran, Kuil
+            CORE: get Kuil info, get Dataran height, traverse AVLTree, go inside and traverse until found Dataran = Dataran (compare object)
+                    go prev/next depends and using counter, if prev/next is null, 
+                    go to Kuil.next/prev depends, traverse AVLTree, if not exist height, continue traverse Kuil 
+                    and repeat but start from tail/head
+
+        TELEPORTASI - Traverse Dataran, Kuil, Pulau
+            CORE: Just get the Kuil info and assign RS.Dataran to the Kuil's Dataran (the Head)
+
+        RISE U H X
+            CORE: Iterate Kuil, Iterate AVLTree, update heightValue (Dataran.height would get updated because pass by-reference)
+                
+
+        QUAKE U H X - Possibly O(nm) n for iterating Dataran, m for iterating AVLTree
+            NOTE: Check for case if height intersect with other Node (QUAKE until minimum default value of 1), if yes will have to combine list
+            Combining can use a ton of time, traverse AVL tree, find all Node with final height of 1, delete
+            From kuilStart, iterate from beginning to create new Node valued 1 and update the Dataran's height (to preserve Order)
+            
+            CORE:
+
+        CRUMBLE
+            CORE: Get Kuil and Dataran info, check if dataran Kuil or not, if not, Store DataranObj, GERAK L
+                    Check if Dataran tail or not, if Yes, update Kuil.tail and nextKuil.head
+                    Update Dataran DLL
+                    Go to AVLTree, find Dataran, delete and update Node DLL, check if DLL empty or not, if empty delete Node
+
+        STABILIZE 
+            CORE: Get Kuil and Dataran info, check if dataran Kuil or not, if not, check prev is higher or not
+                    if not, create new Dataran, update Dataran DLL and insert to AVLTree
+
+        SWEEPING
+            CORE: Get Pulau, Traverse Kuil, for every Kuil traverse AVL Tree with 
+            Receive input Long (limit is 10^12)
+
+*/
+
+THINGS TO EXPLAIN WHILE DEMO
+
+Data Structure In General:
+
+HashMap:        PULAU
+HashMap:        KUIL {NamaKuil : ObjekKuil}
+LinkedList:     [KUIL, KUIL]
+LinkedList:     [Dataran, Dataran, Dataran][Dataran, Dataran, Dataran]
+AVLTree:        Node Node Node
+AVLTreeNodeLL:  [Dataran, Dataran][Dataran, Dataran][Dataran, Dataran]
+
+DESKRIPTIF:
+    Tiap Pulau ada Kuil LinkedList, tiap Kuil ada Dataran LinkedList
+    Dataran bounded ke Kuil, Kuil bounded ke Pulau 
+    Ada Tree untuk tiap Kuil sorted berdasarkan Height
+    Tiap TreeNode ada OrderSorted LinkedList spesifik untuk Kuil itu
+
+    Pulau stored in HashMap Pulau {Pulau : PulauObj}
+
+    Pulau {
+        String nama;
+        String kuilNamaFirst;
+        HashMap<String, Kuil> kuilMap = new HashMap<String,Kuil>();
+
+        [LinkedList Kuil]
+        Kuil head;
+        Kuil tail;
+        Kuil temp; 
+    }
+
+    Kuil {
+        String nama;
+        DataranAVLTree dataranTree = new DataranAVLTree();
+
+        [LinkedList Dataran]
+        Dataran head;
+        Dataran tail;
+        Dataran temp;
+
+        [Node LinkedList Kuil]
+        Kuil prev;
+        Kuil next;
+
+        int totalDataran;
+    }
+
+    Dataran {
+        CustomInteger height;
+
+        [Node LinkedList Dataran]
+        Dataran prev;
+        Dataran next;
+
+        boolean isKuil = false;
+        String kuilName;
+    }
+
+    DataranAVLTree {
+        private Node root;
+        CustomInteger counter;
+    }
+
+    static class Node {
+        // KEY is heightValue and used to iterate AVLTree
+        int key;
+
+        // heightVALUE is Dataran height, referenced by Dataran
+        CustomInteger heightValue;
+
+        // height is Node height within AVLTree
+        int height;
+
+        int totalDataranInNode;
+
+        [Amount of Descendant]
+        int desc = 0;
+
+        [TreeNode]
+        Node prev;
+        Node next;
+
+        [AVLTree LinkedList]
+        AVLTreeNodeDLL head;
+        AVLTreeNodeDLL tail;
+        AVLTreeNodeDLL temp;
+    }
+
+    AVLTreeNodeDLL {
+        [AVLTree LinkedList Node]
+        AVLTreeNodeDLL next;
+        AVLTreeNodeDLL prev;
+        Dataran value;
+    }
+
+    RaidenShogun {
+        Kuil currentKuil;
+        Dataran currentDataran;
+    }
+
+UNIFIKASI U V
+    Ambil Pulau U dan V, detach-link Kuil LinkedList
+    Ambil Head Kuil V, 
+    Ambil tail Kuil U, 
+    Set tail U ke tail V, 
+    Set head V ke head U
+    Update KuilMap
+
+PISAH U
+    Loop pulauMap
+    Get Kuil U dari KuilMap
+    Set Tail V ke prev dari Previous Tail
+    Set Head ke U
+    Set Tail U ke Original Tail V
+    Transfer KuilMap
+
+GERAK KIRI/KANAN S
+    Get current Dataran, go left/right
+    If reach tail of Kuil, iterate to next Kuil
+
+TEBAS KIRI/KANAN S
+    Get current Dataran
+    Find the AVLTreeNode
+    Iterate Left/Right
+    If not found, go to next/prev Kuil
+    Iterate AVLTreeNode if exist the same height
+
+TELEPORTASI V
+    Iterate Pulau
+    Find Kuil
+
+RISE U H X
+    Find Pulau
+    Iterate Kuil
+    InOrderTraversal AVLTree
+    While height still below H
+    Update CustomInteger height by adding X
+
+QUAKE U H X
+    Same concept as RISE
+    But if multiple 1 appeared, delete all instance
+    And reassemble AVLTree
+
+CRUMBLE
+    Get Dataran
+    Check Kuil or not
+    If not, get Dataran and Kuil info
+    Delete, then move Left
+    Delete by detach and reattach LinkedList
+
+STABILIZE
+    Get Dataran
+    Compare to Left and Right
+    Get Value, update the value
+    of left and right by iterating through
+    AVLTree and then removing the Dataran
+    Then add it to the corresponding height Node
+
+SWEEPING U L
+    Go to AVLTree
+    Find the nearest floor value
+    Get Descendant amount data
+    Return that value
