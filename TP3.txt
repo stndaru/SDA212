@@ -92,6 +92,86 @@
         //     karyawanList[v].boss.value = highest;
         // }
 
+
+FOR DEMO PURPOSES
+
+Karyawan is stored in an Array
+KaryawanRanked is stored in Array of ArrayList, each ArrayList
+contains Karyawan of the same Rank
+
+KARYAWAN CLASS
+Stores adjacent Karyawan in adjacent
+Stores every Karyawan in the same network with the same rank
+
+networkGroup, boss, and second boss is exclusive for the
+Karyawan's Network, boss being highest value, secondboss being
+second highest value
+
+Rentan counter stores how many Karyawan adjacent which have
+higher rank than this karyawan (if > 0, then this karyawan is rentan)
+
+CUSTOM INTEGER CLASS
+Pass by reference integer
+
+TAMBAH - Add to adjacent to both Karyawan
+then check which has higher rank, and add to global rentan counter
+and add the rentan counter to the lower rank
+O(1)
+
+RESIGN - Mark this karyawan as not working
+Then check for every adjacent karyawan, detach
+from adjacency list, and check for rentan also
+If the resigning karyawan is higher, then reduce the
+rentan counter for adjacent karyawan, and then
+If the adjacent karyawan no longer has higher rank,
+decrease global rentan counter
+O(nm) -  n for adjacent, m for iterating adjacency list
+
+CARRY - Iterate through adjacent karyawan and find
+the highest rank
+O(n)
+
+BOSS - Grab the target Karyawan, check if 
+rank is same as highest, if yes grab secondboss
+if not, grab boss
+O(1)
+
+updateBoss - Iterate every Karyawan in the KaryawanList
+On the first Karyawan, BFS and mark visited while also
+initiating Boss and SecondBoss integer
+Every karyawan on the same network will be checked and tested
+for rank value, and reference the first karyawan's boss and secondboss
+This will make every karyawan on the same network referencing
+the same integer value, thus having the same boss
+Then iterate karyawanList again, and if already visited
+from the BFS, skip and don't do BFS, instead find another
+network
+O(nm) == O(n^2)
+
+Sebar - Check if rank is the same or have no friends or
+if the initial is the same as target, return correspondingly
+Create visited and previousPath with -1
+Using BFS with Pathing same as the slide
+
+First of all, iterate the currently tracked karyawan
+within the same rank, then mark the rank as visited
+(Push all same rank into queue, so prioritized checking)
+
+Then iterate all of the karyawan in the queue
+Check if adjacent has same rank or is the target as origin
+Then check non origin karyawan
+Each time, add to previous path
+
+When found, trace back from the destination towards origin
+And count how many karyawan it takes, minus 2 since
+Target and Origin isn't counted
+
+NETWORKING - Tried to do the same as BOSS, but failed
+Can use other method attempt such as connecting every network
+with weight between network in difference between rank
+and then find lowest weighted path
+
+
 6 5 1
 2 1 1 1 2 1
 1 2
